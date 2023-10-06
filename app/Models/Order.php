@@ -14,7 +14,7 @@ class Order extends Model
 {
     use Uuids;
     use HasFactory;
-    protected $fillable = ['user_id', 'status', 'items', 'amount', 'shipment'] ;
+    protected $fillable = ['user_id', 'status', 'items', 'amount', 'shipment'];
 
     public static function createFromCart(Cart $cart): Order
     {
@@ -36,12 +36,10 @@ class Order extends Model
         return $order;
     }
 
-    // Define the relationship with User model
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    // Define the relationship with CartItem model
     public function items()
     {
         return $this->hasMany(OrderItem::class);

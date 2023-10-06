@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderExternalRequest;
 use App\Http\Requests\OrderUpdateRequest;
 use App\Models\Enums\OrderStatusEnum;
 use App\Models\Order;
@@ -14,9 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class OrderController extends Controller
 {
-    /**
-     * Display the cart.
-     */
+
     public function view(Request $request, string $id): View
     {
         $order = Order::with('items')->find($id);
@@ -26,19 +23,12 @@ class OrderController extends Controller
         return view('order.view', ['order' => $order]);
     }
 
-    /**
-     * Display the cart.
-     */
     public function viewUserAll(Request $request): View
     {
         $orders = Order::with('items')->orderBy('created_at', 'asc')->get();
         return view('order.user', ['orders' => $orders]);
     }
 
-
-    /**
-     * Display the cart.
-     */
     public function update(OrderUpdateRequest $request, string $id): RedirectResponse
     {
         $order = Order::find(['id' => $id, 'status' => OrderStatusEnum::UNPAID])->first();
@@ -50,24 +40,18 @@ class OrderController extends Controller
         return redirect()->route('external', ['id' => $order->id]);
     }
 
-        /**
-     * Display the cart.
-     */
     public function paid(string $id): RedirectResponse
     {
         $order = Order::find(['id' => $id, 'status' => OrderStatusEnum::UNPAID])->first();
         if (!$order) {
             throw new NotFoundHttpException('Order not found or paid already');
         }
-        if($order->update(['status' => OrderStatusEnum::PAID])) {
+        if ($order->update(['status' => OrderStatusEnum::PAID])) {
             return redirect()->route('order.view', ['id' => $order->id]);
         }
         throw new ErrorException('Unable to update order');
     }
 
-    /**
-     * Display the cart.
-     */
     public function external(string $id): View
     {
         $order = Order::find(['id' => $id, 'status' => OrderStatusEnum::UNPAID])->first();

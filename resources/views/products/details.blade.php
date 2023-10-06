@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title',$product->name)
+    @section('title', $product->name)
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             @yield('title')
@@ -11,8 +11,8 @@
             <div class="bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg">
                 <div class="flex flex-row shadow-sm sm:rounded-lg border">
                     <div class="w-1/4 h-full shadow-sm sm:rounded-lg">
-                        <img
-                            id="photo" src="{{ $product->image ? '/build/assets/'.$product->image : '/build/assets/product.png' }}" />
+                        <img id="photo"
+                            src="{{ $product->image ? '/build/assets/' . $product->image : '/build/assets/product.png' }}" />
                     </div>
                     <form action="{{ route('cart.add') }}" method="POST" class="flex flex-col p-2 w-3/4">
                         @csrf
@@ -78,7 +78,7 @@
                 if (i.value && vars.has(i.value)) {
                     i.removeAttribute('disabled')
                     if (firstEnabled == -1) {
-                    firstEnabled = j;
+                        firstEnabled = j;
                     }
                 } else {
                     i.setAttribute('disabled', '')
@@ -97,7 +97,7 @@
                 $variation.value = variant.id;
             } else {
                 $add.setAttribute('disabled', '');
-                $photo.src = '{{ $product->image ? '/build/assets/'.$product->image : '/build/assets/product.png' }}';
+                $photo.src = '{{ $product->image ? '/build/assets/' . $product->image : '/build/assets/product.png' }}';
                 $variation.value = '';
             }
         }

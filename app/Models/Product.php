@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Variation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Variation;
 
 class Product extends Model
 {
@@ -17,7 +17,8 @@ class Product extends Model
         return $this->hasMany(Variation::class);
     }
 
-    public function getPriceAttribute(){
+    public function getPriceAttribute()
+    {
         return $this->variations->min('price');
     }
     public function getPriceStringAttribute()

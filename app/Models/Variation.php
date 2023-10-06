@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Enums\VariationColourEnum;
+use App\Models\Enums\VariationSizeEnum;
+use App\Models\Product;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Product;
-use App\Models\Enums\VariationSizeEnum;
-use App\Models\Enums\VariationColourEnum;
-use App\Traits\Uuids;
 
 class Variation extends Model
 {

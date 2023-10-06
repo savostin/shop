@@ -20,18 +20,14 @@ class CartController extends Controller
         $request->session()->put('cart', $cart->id);
         return $cart;
     }
-    /**
-     * Display the cart.
-     */
+
     public function view(Request $request): View
     {
         $cart = self::getCurrentCart($request);
         self::setUser($request);
         return view('cart.view', ['cart' => $cart]);
     }
-    /**
-     * Checkout
-     */
+
     public function checkout(Request $request): RedirectResponse
     {
         self::setUser($request);
@@ -40,9 +36,6 @@ class CartController extends Controller
         return redirect()->route('order.view', ['id' => $order->id]);
     }
 
-    /**
-     * Update user id after login
-     */
     public function setUser(Request $request): bool
     {
         $cart = self::getCurrentCart($request);
@@ -54,9 +47,6 @@ class CartController extends Controller
         return false;
     }
 
-    /**
-     * Add variation to cart.
-     */
     public function add(CartAddRequest $request): RedirectResponse
     {
         $data = $request->validated();
