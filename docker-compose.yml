@@ -9,9 +9,9 @@ services:
     container_name: shop_app
     hostname: app
     restart: unless-stopped
-    working_dir: /var/www/html
+    working_dir: /var/www
     volumes:
-      - ./.:/var/www/html  # Map Laravel files to the container
+      - ./.:/var/www  # Map Laravel files to the container
     depends_on:
       - db  # Wait for the database container to be ready
     ports:

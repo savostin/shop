@@ -2,7 +2,7 @@
 FROM php:latest
 
 # Set the working directory in the container
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 # Install required dependencies and extensions
 RUN apt-get update \
@@ -11,6 +11,7 @@ RUN apt-get update \
         zip \
         unzip \
         curl \
+        npm \
         libzip-dev \
     && docker-php-ext-install pdo_mysql zip
 
@@ -34,8 +35,11 @@ RUN php artisan key:generate
 RUN chgrp -R www-data storage bootstrap/cache \
     && chmod -R ug+rwx storage bootstrap/cache
 
+RUN npm i
+RUN npm run build
+
+
 # Expose port 80
 EXPOSE 80
 
-# Start the application
-CMD php artisan serve --host=0.0.0.0 --port=80
+ENTRYPOINT ["/var/www/docker/run.sh"]
