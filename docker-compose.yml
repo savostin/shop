@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Laravel Application Container
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shop_app
+    hostname: app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./.:/var/www/html  # Map Laravel files to the container
+    depends_on:
+      - db  # Wait for the database container to be ready
+    ports:
+      - "8000:80"  # Map container port 80 to host port 8000 (adjust as needed)
+
+  # MySQL Database Container
+  db:
+    image: mysql:latest
+    container_name: shop_db
+    hostname: db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=shop
+      - MYSQL_ROOT_PASSWORD=SuperSecurePa$$word!
+      - MYSQL_USER=shop
+      - MYSQL_PASSWORD=shop
+    ports:
+      - "3306:3306"  # MySQL default port
+
+networks:
+  default:
+    driver: bridge
