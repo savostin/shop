@@ -21,7 +21,7 @@ and open http://127.0.0.1:8000/
 
 ## Future improvements:
 * Paging and sorting in product catalogue
-* Ability to change quantity and delete item in the cart
+* Ability to change quantity and delete item in the cart. Clear cart
 * Use AJAX when add to cart
 * More detailed shipping address form
 * Shipping costs and VAT
