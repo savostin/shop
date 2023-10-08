@@ -93,10 +93,14 @@
             $price.innerHTML = variant ? `Price: &pound; ${variant.price}` : 'Unavailable';
             if (variant) {
                 $add.removeAttribute('disabled');
+                $qty.removeAttribute('disabled');
+                $qty.setAttribute('max', variant.stock);
+                $qty.value = Math.min($qty.value, variant.stock);
                 $photo.src = variant.image ? `/build/assets/${variant.image}` : '/build/assets/product.png';
                 $variation.value = variant.id;
             } else {
                 $add.setAttribute('disabled', '');
+                $qty.setAttribute('disabled', '');
                 $photo.src = '{{ $product->image ? '/build/assets/' . $product->image : '/build/assets/product.png' }}';
                 $variation.value = '';
             }

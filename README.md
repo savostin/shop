@@ -16,7 +16,7 @@ and open http://127.0.0.1:8000/
 * Product Catalogue
 * Product Variations
 * Shopping Cart
-* Dummy checkout Process
+* Dummy checkout process
 * Order History
 
 ## Future improvements:
@@ -25,7 +25,8 @@ and open http://127.0.0.1:8000/
 * Use AJAX when add to cart
 * More detailed shipping address form
 * Shipping costs and VAT
+* Control the stock availability - update in stock availability after order complete
 * When guest is forced to login during checkout redirect to the cart, not to the catalogue
-* Improve UI/UX
+* Improve UI/UX. Show number of items available in stock
 * Code comments
 * Tests
